@@ -6,7 +6,7 @@
 // void printTheArray(int arr,int cols);
 
 int main(){
-   int cols=0,sumOfLeftDiagonalElements=0;
+   int cols=0,sumOfLeftDiagonalElements=0,sumOfRightDiagonalElements=0;
    printf("ENTER THE NO OF COLOMNS OF AN ARRAY AND SAME WILL BE THE NUMBER OF ROWS : \n");
    scanf("%d",&cols);
    int arr[cols][cols];
@@ -26,12 +26,17 @@ int main(){
 
 //SUM OF PRINCIPLE/LEFT DIAGONAL ELEEMNTS OF ARRAY
 for(int i=0;i<cols;i++){
-    printf("%d  === ",arr[i][i]);
     sumOfLeftDiagonalElements = sumOfLeftDiagonalElements + arr[i][i];
 }
-printf("THE SUM OF RIGHT DIAGONAL ELEMENTS IS %d : \n",sumOfLeftDiagonalElements);
+printf("THE SUM OF LEFT DIAGONAL ELEMENTS IS %d : \n",sumOfLeftDiagonalElements);
 
 //SUM OF PRINCIPLE/RIGHT DIAGONAL ELEEMNTS OF ARRAY
+
+for(int i=0,j=cols-1;i<cols;i++,j--){
+ sumOfRightDiagonalElements = sumOfRightDiagonalElements + arr[i][j];
+}
+printf("THE SUM OF RIGHT DIAGONAL ELEMENTS IS %d : \n",sumOfRightDiagonalElements);
+
 
    //int *arr = createArray(cols);
 //    printTheArray(arr);
