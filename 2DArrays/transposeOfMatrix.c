@@ -16,7 +16,7 @@ int main(){
         scanf("%d",&arr[i][j]);
     }
   }
-  //PRINT ENTERED ARRAY
+  //PRINT ENTERED ARRAY.
    printf("THE ARRAY IS : \n");
   for(int i = 0;i<row;i++)
   {
