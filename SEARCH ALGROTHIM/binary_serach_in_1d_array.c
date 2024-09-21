@@ -20,8 +20,8 @@ int binarySearch()
     //ASSSUME FOR NOW ARRAY IS SORTED IN AN INCREASING ORDER
     int arr[] = {1,2,3,4,5,6,7,8,9,10},target = 2;
     int size = sizeof(arr)/sizeof(int); 
-    int start = 1,end = size;
-    while (start <= end)
+    int start = 1,end = size;//MOSTLY WE NAME start AS LOW AND end AS HIGH BUT FOR NOW WE WILL USE start AND end
+    while (start <= end)//IF start is > end THAT MEANS WE DID'T FIND THE ELEMENT AND WE WILL THEN RETURN -1
     {
         int mid = (start + end)/2;
         if(target == arr[mid])
@@ -36,7 +36,6 @@ int binarySearch()
         }
         
     }
-    
     return -1;
     
 }
