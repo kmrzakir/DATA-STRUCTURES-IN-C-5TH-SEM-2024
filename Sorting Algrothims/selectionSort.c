@@ -4,6 +4,7 @@ int main(){
     
     int arr[7] = {4,7,3,1,8,6,2};
 
+    //this function will sort an arrya using selection sort algo.
     selectionSort(arr,7);
     return 0;
 }
