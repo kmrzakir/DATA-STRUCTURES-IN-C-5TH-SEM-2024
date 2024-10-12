@@ -12,7 +12,7 @@ insertionSort(arr,6);
 void insertionSort(int *arr,int size){
 
 int temp;
-  for(int i=1;i<size;i++){
+  for(int i=;i<size;i++){
   temp = arr[i];
   int j = i-1;
   while (j>=0 && temp < arr[j]){
