@@ -11,8 +11,9 @@ int presidence(char operator);
 int main(){
 
    printf("Enter an expression : ");
-   fgets(infix,99,stdin);
-   printf("The infix expression is %s ",infix);
+//    fgets(infix,99,stdin);
+     gets(infix);
+     printf("The infix expression is %s ",infix);
      
      // This will convert infix exp into posfix
    infoxToPosfix();
