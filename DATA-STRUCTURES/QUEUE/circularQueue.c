@@ -2,8 +2,9 @@
 
 void enqueue(char ch);
 char dQueue();
+void printQ();
 
-#define MAX 100
+#define MAX 10
 char cQueue[MAX]; // cQueue means circular queue
 int front = -1, rare = -1;
 
@@ -13,28 +14,33 @@ int main(){
     enqueue('b');
     enqueue('c');
     enqueue('d');
+    enqueue('z');
     dQueue();
-
     printQ();
 
     return 0;
 }
 
-// This will print queue
-// void printQ(){
-//     if(front == -1){
-//         printf("Queue is empty  can not print: \n")
-//     }else{
-//         int i = front;
-//         printf("Queue is : ");
-//         while ((i % MAX <= rare % MAX))
-//         {
-//             printf("%c",cQueue[i]);
-//             i++;
-//         }
-//         printf("\n");
-//     }
-// }
+//This will print queue
+void printQ(){
+   if(front == -1){
+    printf("Circular queue is empty cna not print : \n");
+   }else{
+    int i = front;
+    printf("circular Queue is : ");
+    while (1)
+    {
+       printf("%c",cQueue[i]);
+       i = (i + 1) % MAX;
+       if(i == rare){
+        break;
+       }
+    }
+    
+    printf("%c",cQueue[i]);
+    printf("\n");
+   }
+}
 
 // Dqueue function
 char dQueue(){
