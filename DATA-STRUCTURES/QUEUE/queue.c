@@ -8,6 +8,7 @@ void printQ();
 #define MAX 100
 int rare = -1, front = -1;
 char queue[MAX];
+
 int main(){
 
     enque('c');

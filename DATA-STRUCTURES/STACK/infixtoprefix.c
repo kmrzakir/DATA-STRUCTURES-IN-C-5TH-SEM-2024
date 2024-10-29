@@ -1,141 +1,160 @@
 #include<stdio.h>
+#include<string.h>
 #define MAX 100
 int top = -1;
 char  stack[MAX];
-char prefix[MAX];
-char* infixToPrefix(char* infix, int size);
+int infixSize(char* infix);
 char* reverse(char* infix, int size);
-int sizeOfInfix(char* infix);
-int isOperator(char charr);
+void push(char operator);
 char pop();
-void push(char elm);
-int operatorPresedence(char operator);
+void infixToPrefix(char* infix, char* prefix,int size);
+int isEmpty();
+int isOperator(char ch);
+int presidence(char operator);
+
+// solve a+b*(a-h)-u prefix should be "-+a*b-ahu" not "+a-*b-ahu"
+ 
+
 int main(){
 
-char infix[MAX];
-int size = 0;
-    printf("Enter the infix expression : ");
-    gets(infix);
-    size = sizeOfInfix(infix);
-    char* prefix = infixToPrefix(reverse(infix,size),size);
-    printf("The prefix expression is %s  : \n",prefix);
+   char infix[MAX], prefix[MAX], revInfix[MAX];
+
+
+  printf("Enter the infix expression : ");
+  gets(infix);
+  printf("The entered expression is %s : \n",infix);
+  
+  int size = infixSize(infix);
+  printf("The size of infix exp is %d : \n",size);
+
+  strcpy(revInfix, reverse(infix,size));
+  printf("The reverse string is %s : \n",revInfix);
+
+   infixToPrefix(revInfix,prefix, size);
+  printf("The prefix exp is %s : \n",prefix);
 
     return 0;
 }
 
-// This will convert infix to prefix exp
-char* infixToPrefix(char* infix, int size){
-    int p=0;
-    for(int i = 0;i < size; i++){
-      if(infix[i] == '('){
-        push('(');
-      }else if (infix[i] == ')')
-      {
-       while (top != -1 && stack[top] != '(')
-       {
-        char popElm = pop();
-        prefix[p] = popElm;
-        p++;
-       }
-       
-      }else if (isOperator(infix[i]))
-      {
-       
-       while(top != -1 && operatorPresedence(stack[top]) >= operatorPresedence(infix[i])){
-           char popelm = pop();
-           prefix[p] = popelm;
-           p++;
-       }
-       push(infix[i]);
-      }else{
-        prefix[p] = infix[i];
-        p++;
-      }
-    }
+// Thsi will convert infix into prefix
+void infixToPrefix(char* infix, char* prefix,int size){
 
-    while (top != -1)
+    int p = -1;
+
+    for(int i = 0;i<size;i++){
+        if(infix[i] == '('){
+            push('(');
+        }else if (infix[i] == ')')
+        {
+            while (isEmpty() == 1 && stack[top] != '(')  
+            {
+                char popElm = pop();
+                prefix[++p] = popElm;
+            }
+            pop();
+        }else if (isOperator(infix[i]))
+        {
+            while(isEmpty() && presidence(stack[top]) >= presidence(infix[i]) && stack[top] != '(' && stack[top] != ')'){
+                char popElm = pop();
+                prefix[++p] = popElm;
+            }
+            push(infix[i]);
+
+        }else{
+            prefix[++p] = infix[i];
+        }    
+    }
+    while (isEmpty())
     {
         char popElm = pop();
-        prefix[p] = popElm;
-        p++;
+        prefix[++p] = popElm;
     }
-    prefix[p] = '\0';
 
-return prefix;
+    prefix[++p] = '\0';
+
+
+    // Finally reverse the exp
+    int sizeofPrefix = infixSize(prefix);
+    strcpy(prefix,reverse(prefix, sizeofPrefix));
+    return;
 }
 
-// This will set operator presedence
-
-int operatorPresedence(char operator){
-    if (operator == '(' || operator == ')' )
-    {
-       return 4;
-    }else if (operator == '*' || operator == '%' || operator == '/')
-    {
-        return 2;
-    }else if (operator == '^')
-    {
-      return 3;
-    }else{
-        return 1;
-    }
-}
-
-// This will check is operator or not
-int isOperator(char charr){
-    if(charr == '+' || charr == '-' || charr == '*' || charr == '/' || charr == '^' || charr == '%'){
-        return 1;
-    }
-    return 0;
-}
-
-// This will reverse the infix exp to prefix exp
+// This will reverse the infix expression
 char* reverse(char* infix, int size){
-  char temp;
-  for(int i = 0;i<size/2;i++){
+    char temp;
+   for (int i = 0;i < size/2;i++){
     temp = infix[i];
     infix[i] = infix[size-1-i];
     infix[size-1-i] = temp;
-  }
+   }
 
-  // Replace '(' with ')' and vice versa
-   for(int i=0;i<size;i++){
-     if(infix[i] == '('){
+   // swap '(' with ')' and vice versa
+   for(int i = 0;i < size; i++){
+    if(infix[i] == '('){
         infix[i] = ')';
     }else if (infix[i] == ')')
     {
         infix[i] = '(';
     }
    }
- return infix;
+   return infix;
 }
 
-// This will give the size of an infix exp
-int sizeOfInfix(char* infix){
- int size = 0;
- for(int i=0;infix[i] != '\0';i++){
-    size = size + 1;
- }
- return size;
+// This will return the size of an infix expression
+int infixSize(char* infix){
+    
+    int size =  0;
+    for(int i=0; infix[i] != '\0';i++){
+        ++size;
+    }
+    return size;
 }
 
-// Pop function 
+// Push function 
+void push(char operator){
+    if(top == MAX){
+        printf("Stack is full can not push : \n");
+    }
+    stack[++top] = operator;
+}
+
+// Pop function
 char pop(){
     if(top == -1){
-        printf("Stack is empty can't pop element : \n");
-        return '0';
+        printf("Stack is empty cna not pop : \n");
+        return '\0';
     }
-    char popElm = stack[top];
-    top--;
-    return popElm;
+    return stack[top--];
 }
 
-// Push function
-void push(char elm){
-    if(top == MAX){
-        printf("Can not push element from the stack : \n");
-        return;
-    }
-    top++;
-    stack[top] = elm;
+// checks is stack empty or not
+int isEmpty(){
+    return top >= 0;
 }
+
+// Checks is operator or not
+int isOperator(char ch){
+    return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%' || ch == '^';
+}
+
+// Set operator presedence 
+int presidence(char operator){
+    switch (operator)
+    {
+    case '^':{
+          return 3;
+    }
+    case '*' :
+    case '/' :
+    case '%' :{
+        return 2;
+    }
+    case '+' :
+    case '-' :{
+        return 1;
+    }
+    default:
+        return 4;
+    }
+}
+
