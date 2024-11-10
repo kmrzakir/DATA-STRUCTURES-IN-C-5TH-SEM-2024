@@ -42,10 +42,10 @@ int evalPosfix(char* posfix){
             int operand2 = pop();
             int operand1 = pop();                  // 231*+9-
             char operator = posfix[i];
-            char result = solve(operand1,operand2,operator);
+            int result = solve(operand1,operand2,operator);
             push(result);
         }else{
-            int n = posfix[i] - '0';
+            int n = posfix[i] - '0'; // -'0' will convert char into int
             push(n);
         }
     }
