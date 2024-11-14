@@ -6,6 +6,7 @@ void insertNodeAtBiggning(int data);
 void insertNodeAtEnd(int data);
 void displayFromBiggning();
 
+
 // implementation of doubly linked-list
 
 // declearing node here
@@ -25,9 +26,29 @@ int main(){
     insertNodeAtBiggning(60);
     insertNodeAtBiggning(80);
 
+
+
     displayFromBiggning();
 
     return 0;
+}
+
+void inserNodeAfter(int data,int position){
+    struct Node *newNode = createNode(data);
+    struct Node *temp = NULL;
+    for(int i = 0;i<position;i++){
+        if(i == 0){
+            temp = head;
+        }else{
+            temp = temp->next;
+        }
+        if(temp == NULL){
+            printf("Size of linke list is smaller than %d :",position);
+            return;
+        }
+    }
+    newNode->next = temp->next;
+    temp->next = newNode;
 }
 
 // cretaing node here
