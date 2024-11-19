@@ -76,3 +76,90 @@ struct Node* createNode(int data){
     newNode->next = NULL;
     return newNode;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// wait() function implemetation
+ wait(s){ // wait() is also represented by P()
+    // It will wait if s <= 0
+    while(s <= 0);
+    // Other wise it will decremnt s
+    s--;
+ }
+// signal() function implemetation
+signal(s){// also represented by V()
+    // This will increment s by 1
+    s = s + 1;
+}
+
+// Producers side code
+producer(){
+    do
+    {
+    // It will track how many
+    // slots are empty if 
+    // empty = 0 that menas 
+    // buffer is full so it
+    // wil wait until buffer
+    // slot will get empty
+    wait(empty);
+
+    // This will set lock
+    // ifmitux = 1 to it will
+    // enter in critical section
+    // other wise it will wait 
+    wait(mitux);
+
+    // CRITICAL SECTION WILL BE HERE
+    // AND HERE IT WILL PRODUCE THE ITEM
+
+    // Here it will releas the lock
+    signal(mitux);
+
+    // this will increment the full
+    // to indicate that buffer is having 
+    // some slots filled
+    signal(full);
+
+    } while (1);  
+}
+
+// Connsumer side code
+    consumer(){
+        do
+        {
+        // First it will check
+        // is any flot filled
+        // in buffer or not
+        wait(full);
+
+        // Then it will check
+        // is critical section availabe
+        // or not
+        wait(mitux);
+
+        // CRITICAL SECTION WILL BE HERE
+        // AND HERE IT WILL CONSUME THE ITEM
+        // OR WE CAN SAY DATA FROM THE BUFFER
+
+        // Then it will release lock
+        // critical section
+        signal(mitux);
+
+        // This will incremet empty
+        // to indicate how many slots
+        // in buffer are empty
+        signal(empty);
+
+        } while (1);
+        
+    }
