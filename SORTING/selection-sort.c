@@ -6,6 +6,11 @@ void selectionSort(int *arr,int length);
 //Worst Case (Reverse sorted) : O(n power 2)
 // Average Case :  O(n power 2)
 
+// QUICK SOR TIME COMPLEXITY 
+// best case O(nlogn)
+// worst case O(n power 2)
+// average case O(nlogn)
+
 int main()
 {
     

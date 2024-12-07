@@ -10,8 +10,8 @@ int pop();
 
 // Here is how to eval a posfix exp
 // 1. loop from left to right in a posfix exp.
-// 2. if we find operand then puh it in the stack.
-// 3.  if we find any operator then puh the top 2 elemnts of a stack
+// 2. if we find operand then push it in the stack.
+// 3.  if we find any operator then pop the top 2 elemnts of a stack
      // int A =  pop();
      // int B = pop();
 // perform the operaton as 

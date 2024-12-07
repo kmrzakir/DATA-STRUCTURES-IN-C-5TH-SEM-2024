@@ -2,6 +2,9 @@
 #define MAX 100
 void insertion_sort(int *arr, int size);
 
+// best case = O(n)
+//  worst case and average case is O(n power 2)
+
 int main()
 {
 
