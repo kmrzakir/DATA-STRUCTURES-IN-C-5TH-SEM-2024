@@ -3,7 +3,7 @@
 
 struct Node* createNode(int data);
 struct Node* binary_tree();
-void preorder_traverse(struct Node *root);
+void pre_order_traverse(struct Node *root);
 
 struct Node
 {
@@ -15,42 +15,64 @@ struct Node *root = NULL;
 
 int main()
 {
+    printf("ENTER THE ROOT NODE : ");
     root = binary_tree();
-    preorder_traverse(root);
+    printf("BINARY TREE PRE ORDER TRAVERSER : ");
+    pre_order_traverse(root);
     return 0;
 }
 
-void preorder_traverse(struct Node *root)
+
+
+void pre_order_traverse(struct Node *root)
 {
+    if(root == NULL)
+    {
+        return;
+    }
     printf("%d ",root->data);
-    preorder_traverse(root->left);
-    preorder_traverse(root->right);
+    pre_order_traverse(root->left);
+    pre_order_traverse(root->right);
 }
 
 struct Node* binary_tree()
 {
     int x;
-    struct Node *temp;
-    if(root == NULL)
-    {
-        printf("Enter the root node : ");
-        scanf("%d",&x);
-        temp = createNode(x);
-        root = temp;
-
-    }else{
-        scanf("%d",x);
-        temp = createNode(x);
-    }
+    scanf("%d",&x);
     if(x == -1)
     {
         return NULL;
     }
-    printf("ENTER THE LEFT NODE : ");
+    struct Node *temp = createNode(x);
+    printf("ENTER THE RIGHT NODE OF %d : ",temp->data);
     temp->left = binary_tree();
-    printf("ENTER THE RIGHT NODE : ");
+    printf("ENTER THE LEFT NODE OF %d : ",temp->data);
     temp->right = binary_tree();
+
     return temp;
+
+    // int x;
+    // struct Node *temp;
+    // if(root == NULL)
+    // {
+    //     printf("Enter the root node : ");
+    //     scanf("%d",&x);
+    //     temp = createNode(x);
+    //     root = temp;
+
+    // }else{
+    //     scanf("%d",x);
+    //     temp = createNode(x);
+    // }
+    // if(x == -1)
+    // {
+    //     return NULL;
+    // }
+    // printf("ENTER THE LEFT NODE : ");
+    // temp->left = binary_tree();
+    // printf("ENTER THE RIGHT NODE : ");
+    // temp->right = binary_tree();
+    // return temp;
 }
 
 struct Node* createNode(int data)
