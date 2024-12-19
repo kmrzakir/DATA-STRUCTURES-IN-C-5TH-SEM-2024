@@ -5,6 +5,7 @@ struct Node* createNode(int data);
 struct Node* insertNode(struct Node* root,int data);
 void display(struct Node *root);
 struct Node* createNode(int data);
+int searchData(struct Node *root,int data);
 
 struct Node
 {
@@ -26,10 +27,20 @@ int main()
 
     display(root);
 
+    int bool = searchData(root,700);
+    if(bool == 0)
+    {
+        printf("ELEMENT NOT SOUND : \n");
+    }else
+    {
+        printf("ELEMNET IS FOUND : \n");
+    }
+
 
     return 0;
 }
 
+// display BST
 void display(struct Node *root)
 {
     if(root == NULL)
@@ -41,6 +52,7 @@ void display(struct Node *root)
     display(root->right);
 }
 
+// insert node in BST
 struct Node* insertNode(struct Node* root,int data)
 {
     if(root == NULL)
@@ -58,6 +70,28 @@ struct Node* insertNode(struct Node* root,int data)
     return root;
 }
 
+// serach a particular data in a BST
+int searchData(struct Node *root,int data)
+{
+    if(root == NULL)
+    {
+        printf("%d ELEMENT IS NOT PRESENT IN BST",data);
+        return 0;
+    }
+    if(root->data == data)
+    {
+        return 1;
+    }
+    if(data < root->data)
+    {
+       return searchData(root->left,data);
+    }else
+    {
+       return searchData(root->right,data);
+    }
+}
+
+// create a node
 struct Node* createNode(int data)
 {
     struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
