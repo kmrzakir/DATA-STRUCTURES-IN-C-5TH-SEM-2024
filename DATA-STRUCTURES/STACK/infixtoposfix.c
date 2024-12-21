@@ -1,6 +1,6 @@
 #include <stdio.h>
 #define MAX 100
-char infix[MAX],posfix[MAX],stack[MAX];
+char infix[MAX],prefix[MAX],stack[MAX];
 int top = -1;
 void infoxToPosfix();
 void push(char operator);
@@ -17,7 +17,7 @@ int main(){
      
      // This will convert infix exp into posfix
    infoxToPosfix();
-   printf("Posfix expression is %s  ",posfix);
+   printf("Posfix expression is %s  ",prefix);
     return 0;
 }
 
@@ -39,7 +39,7 @@ void infoxToPosfix(){
      {
         while ((popelm = pop()) != '(')
         {
-            posfix[p++] = popelm;
+            prefix[p++] = popelm;
         }
         
      }
@@ -50,16 +50,16 @@ void infoxToPosfix(){
         // Check the presedence of an operator
         while (isEmpty() == 1 && presidence(symbol) <= presidence(stack[top]) && stack[top] != '(' && stack[top] != ')')
         {
-            char tt = 
+            // char tt = 
             popelm = pop();
-            posfix[p++] = popelm;
+            prefix[p++] = popelm;
         }
         push(symbol);
      }
 
      // This default will handle operand's and will put into the posfix expression
      else{
-        posfix[p++] = symbol;
+        prefix[p++] = symbol;
      }
     }
 
@@ -67,11 +67,11 @@ void infoxToPosfix(){
     while (top != -1)
     {
         popelm = pop();
-        posfix[p++] = popelm;
+        prefix[p++] = popelm;
     }
     
     // This will add '\0' at bthen the end of posfix expression which if help full for various perpose's
-    posfix[p] = '\0';
+    prefix[p] = '\0';
 }
 
 

@@ -1,6 +1,6 @@
 #include<stdio.h>
 #define MAX 100
-char stack[MAX],posfix[MAX],infix[MAX];
+char stack[MAX],prefix[MAX],infix[MAX];
 int top = -1;
 
 void infix_to_posfix();
@@ -19,7 +19,7 @@ int main()
 
  infix_to_posfix();
 
- printf("THE POSFIX EXPRESSION IS : %s",posfix);
+ printf("THE POSFIX EXPRESSION IS : %s",prefix);
 
   return 0;
 }
@@ -41,7 +41,7 @@ void infix_to_posfix(){
       while ((popelm = pop()) != '(')
       {
         p++;
-        posfix[p] = popelm;
+        prefix[p] = popelm;
       }
     }else if (isOperator(symbol))
     {
@@ -49,12 +49,12 @@ void infix_to_posfix(){
       {
         char popelm = pop();
         p++;
-        posfix[p] = popelm;
+        prefix[p] = popelm;
       }
       push(symbol);
     }else{
       p++;
-      posfix[p] = symbol;
+      prefix[p] = symbol;
     }
     
     
@@ -63,7 +63,7 @@ void infix_to_posfix(){
   while (top != -1)
   {
     p++;
-    posfix[p] = pop();
+    prefix[p] = pop();
   }
     
 }
