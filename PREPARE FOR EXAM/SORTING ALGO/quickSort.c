@@ -28,45 +28,60 @@
 
 
 #include<stdio.h>
+void displayArr(int *arr,int size);
+void quickSort(int *arr,int start,int end);
+int partition(int *arr,int start ,int end);
+void swap(int *arr,int i,int j);
+
 
 int main()
 {
 
     int arr[] = {2,6,5,3,8,7,1,0};
 
+    quickSort(arr,0,8-1);
+
+    displayArr(arr,8);
+
     return 0;
 }
 
-void quickSort(int *arr,int low,int high)
+void quickSort(int *arr,int start,int end)
 {
-    if(low < high)
+    if(start >= end) return;
+    int pivot = partition(arr,start,end);
+    quickSort(arr,start,pivot-1); // left side
+    quickSort(arr,pivot+1,end); // right side
+}
+
+
+int partition(int *arr,int start ,int end)
+{
+    int j = start;
+    for(int i = start; i <= end;i++) // taking pivot as the end last element of an array
     {
-        int pivot = partition(arr,low,high);
-        // quickSort()
+        if(arr[i] <= arr[end])
+        {
+            // int temp = arr[i];
+            // arr[i] = arr[j];
+            // arr[j] = temp;
+            swap(arr,i,j);
+            j++;
+        }
+    }
+    return j-1;
+}
+
+void displayArr(int *arr,int size)
+{
+    for(int i = 0;i<size;i++)
+    {
+        printf("%d ",arr[i]);
     }
 }
-int partition(int *arr,int low, int high)
-{
-    int mid = (low + high)/2;
-    int pivot = arr[mid];
-    while (low < high)
-    {
-        while (arr[low] < pivot)
-        {
-            low++;
-        }
-        while (arr[high] > pivot)
-        {
-            high++;
-        }
-        if(low <= high)
-        {
-            int temp = arr[low];
-            arr[low] = arr[high];
-            arr[high] = temp;
-        }
-        
-        
-    }
-    
+
+void swap(int *arr,int i,int j){
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
 }

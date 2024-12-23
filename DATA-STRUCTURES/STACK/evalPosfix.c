@@ -3,7 +3,7 @@
 int top = -1;
 int stack[MAX];
 char solve(char operand1, char operand2, char operator);
-int evalPosfix(char* posfix);
+int evalPrefix(char* posfix);
 int isOperator(char ch);
 void push(int ch);
 int pop();
@@ -26,7 +26,7 @@ int main(){
     printf("Enter the posfix expression : ");
     gets(posfix);
 
-   int result = evalPosfix("23*54*+");
+   int result = evalPrefix("23*54*+");
 
     printf("The result of the posfix expression %s is %d",posfix,result);
    
@@ -35,7 +35,7 @@ int main(){
 }
 
 // This will evalvate the posfix expression
-int evalPosfix(char* posfix){
+int evalPrefix(char* posfix){
 
     for(int i= 0;posfix[i] != '\0';i++){                  
         if(isOperator(posfix[i])){
