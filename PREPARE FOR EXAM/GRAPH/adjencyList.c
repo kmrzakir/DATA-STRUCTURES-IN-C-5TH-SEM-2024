@@ -17,7 +17,7 @@ struct AdjList
 // this will represent the graph
 struct Graph
 {
-    int v; // No of vertices
+    int vertices; // No of vertices
     struct AdjList *array;
 };
 
@@ -34,7 +34,7 @@ struct Node* creatVertexeNode(int v_data)
 struct Graph* createGraph(int v)
 {
     struct Graph *graph = (struct Graph*)malloc(sizeof(struct Graph));
-    graph->v = v;
+    graph->vertices = v;
     graph->array  = (struct AdjList*)malloc(v * sizeof(struct AdjList));
     for(int i = 0;i < v;i++)
     {
@@ -60,7 +60,7 @@ void addEdge(struct Graph *graph, int src, int dest)
 
 void displayGrap(struct Graph *grap)
 {
-    for(int i = 0;i < grap->v;i++)
+    for(int i = 0;i < grap->vertices;i++)
     {
         struct Node *mainNode = grap->array[i].head;
         printf("THE ADJENC LIST VERTIX OF %d VERTEXT IS : ",i);
