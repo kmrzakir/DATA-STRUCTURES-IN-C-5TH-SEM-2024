@@ -2,93 +2,88 @@
 #include<stdlib.h>
 
 // this will represent vertix
-struct Node
+struct vertext
 {
-    int v_data;
-    struct Node *next;
+    int data;
+    struct vertext *next;
 };
 
-// this will represent the adjencyList
-struct AdjList
+// this will represent adjencyList
+struct adjencyList
 {
-    struct Node *head;
+    struct vertext *head;
 };
 
-// this will represent the graph
+// this will represent a graph
 struct Graph
 {
-    int vertices; // No of vertices
-    struct AdjList *array;
+    int vertices; // this will represent number of vertices
+    struct adjencyList *array; // this will represent list of connected vertices
 };
 
-// this will cretae  a node or we can say a vertix
-struct Node* creatVertexeNode(int v_data)
+// this will cretae a vertext
+struct vertext* createVertext(int data)
 {
-    struct Node *vertix = (struct Node*)malloc(sizeof(struct Node));
-    vertix->v_data = v_data;
-    vertix->next = NULL;
-    return vertix;
+    struct vertext *temp = (struct vertext*)malloc(sizeof(struct vertext));
+    temp->data = data;
+    temp->next = NULL;
+    return temp;
 }
 
 // this will cretae a graph
-struct Graph* createGraph(int v)
+struct Graph* createGraph(int vertices)
 {
     struct Graph *graph = (struct Graph*)malloc(sizeof(struct Graph));
-    graph->vertices = v;
-    graph->array  = (struct AdjList*)malloc(v * sizeof(struct AdjList));
-    for(int i = 0;i < v;i++)
+    graph->array = (struct adjencyList*)malloc(vertices * sizeof(struct adjencyList));
+    for(int i = 0;i < vertices;i++)
     {
-        graph->array->head = NULL;
+        graph->array[i].head = NULL;
     }
-   return graph;
+    return graph;
 }
 
-// this function wlll add an edge from src vertext to dest vertext and also
-// from dest vertext to src vertex because here we are creating an undirected graph
-void addEdge(struct Graph *graph, int src, int dest)
+// this will add an edge from scr to dest and dest to src because graph is undirected
+void addEdge(struct Graph *graph,int src,int dest)
 {
-    // edge from dest to src vertex
-    struct Node *temp = creatVertexeNode(dest);
+    // edge from dest to src
+    struct vertext *temp = createVertext(dest);
     temp->next = graph->array[src].head;
     graph->array[src].head = temp;
 
-    // since the graph is undirected we will add an edge from dest to src vertext also
-    temp = creatVertexeNode(src);
+    // edge from src to dest
+    temp = createVertext(src);
     temp->next = graph->array[dest].head;
     graph->array[dest].head = temp;
 }
 
-void displayGrap(struct Graph *grap)
+// display graph
+void displayGraph(struct Graph *graph)
 {
-    for(int i = 0;i < grap->vertices;i++)
+    for(int i = 0;i < graph->vertices;i++)
     {
-        struct Node *mainNode = grap->array[i].head;
-        printf("THE ADJENC LIST VERTIX OF %d VERTEXT IS : ",i);
-        while(mainNode != NULL)
+        struct vertext *temp = graph->array[i].head;
+        while (temp)
         {
-            printf("uu%d --- %d ",i,mainNode->v_data);
-            mainNode = mainNode->next;
+            printf("%d -> %d ",i,temp->data);
+            temp = temp->next;
         }
-        printf("\n");
+        
     }
 }
 
-int main()
+void main()
 {
 
-    struct Graph *graph = createGraph(5);
+    struct Graph *graph = createGraph(6);
 
     addEdge(graph,0,1);
-    addEdge(graph,0,2);
-    addEdge(graph,0,3);
-    addEdge(graph,0,4);
-    addEdge(graph,2,3);
-    addEdge(graph,2,4);
-    addEdge(graph,4,3);
+    addEdge(graph,2,1);
     addEdge(graph,3,1);
-    addEdge(graph,3,2);
+    addEdge(graph,4,1);
+    addEdge(graph,5,1);
+    addEdge(graph,3,3);
 
-    displayGrap(graph);
+    displayGraph(graph);
 
-    return 0;
+    return;
 }

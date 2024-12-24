@@ -6,21 +6,46 @@ void reverse(int *arr,int size);
 void selection_sort2(int *arr,int size);
 void bubble_sort2(int *arr,int size);
 void print_n(int n);
+int partition(int *arr,int start,int end);
+void quickSort(int *arr,int start,int end);
 
 int main()
 {
 
-  // int arr[] = {5,8,1,10,12,2,3,8,0};
-  // bubble_sort2(arr,9);
+  int arr[] = {9,8,7,6,5,4,3,2,1};
+  quickSort(arr,0,9-1);
 
-  // printf("ARRAY AFTER SORT : ");
-  // for (int i = 0; i < 9; i++)
-  // {
-  //   printf("%d ",arr[i]);
-  // }
-  printf("FIRST N NUMBERS USING RECURSION ARE : ");
-  print_n(12);
+  printf("ARRAY AFTER SORT : ");
+  for (int i = 0; i < 9; i++)
+  {
+    printf("%d ",arr[i]);
+  }
+  // printf("FIRST N NUMBERS USING RECURSION ARE : ");
+  // print_n(12);
   return 0;
+}
+
+int partition(int *arr,int start,int end)
+{
+  int j = start;
+  for(int i = start;i <= end;i++)
+  {
+    if(arr[i] <= arr[end])
+    {
+      int temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+      j++;
+    }
+  }
+  return j-1;
+}
+void quickSort(int *arr,int start,int end)
+{
+  if(start >= end) return;
+  int pivot = partition(arr,start,end);
+  quickSort(arr,start,pivot-1);
+  quickSort(arr,pivot+1,end);
 }
 
 void print_n(int n)
