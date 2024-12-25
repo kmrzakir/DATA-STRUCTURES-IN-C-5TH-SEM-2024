@@ -141,20 +141,92 @@ void bft(struct Graph *graph,int startVertex)
     
 }
 
+// void dfs(struct Graph *graph, int node,int *answer,int *visited)
+// {
+//     visited[node] = 1;
+//     enQueu(node);
+
+// }
+
+
+void bfs2(struct Graph *graph, int startVertex)
+{
+    int ansArray[MAX],visitedArray[MAX] = {0},index = 0;
+    enQueu(startVertex);
+    visitedArray[startVertex] = 1;
+    while (front != -1)
+    {
+        int data = dQueue();
+        ansArray[index] = data;
+        index++;
+        struct vertext *node = graph->array[data].head;
+        while (node != NULL)
+        {
+            int temp = node->data;
+            if(visitedArray[temp] == 0)
+            {
+                enQueu(temp);
+                visitedArray[temp] = 1;
+            }
+            node = node->next;
+        }
+    }
+
+    printf("THE BFS OG THE GRAPH IS : ");
+    for(int i = 0;i < index;i++)
+    {
+        printf("%d ",ansArray[i]);
+    }
+
+}
+
+void fun(struct Graph *graph,int startIndex,int *visistedArray)
+{
+    visistedArray[startIndex] = 1;
+    printf("%d ",startIndex);
+    struct vertext *node = graph->array[startIndex].head;
+    while (node != NULL)
+    {
+        if(visistedArray[node->data] == 0)
+        {
+            fun(graph,node->data,visistedArray);
+        }
+        node = node->next;
+    }
+    
+}
+void dfs(struct Graph *graph, int startVertex)
+{
+    int visitedArray[MAX] = {0};
+
+    printf("THE DFS OF THE GRAPH IS : ");
+    fun(graph,startVertex,visitedArray);
+
+}
+
 int main()
 {
     struct Graph *graph = createGraph(5);
 
-    addEdge(graph,0,1);
-    addEdge(graph,0,2);
-    addEdge(graph,0,3);
-    addEdge(graph,2,4);
-    addEdge(graph,2,1);
-    addEdge(graph,3,2);
+    // addEdge(graph,0,1);
+    // addEdge(graph,0,2);
+    // addEdge(graph,0,3);
+    // addEdge(graph,2,4);
+    // addEdge(graph,2,1);
+    // addEdge(graph,3,2);
+
+    addEdge(graph, 0, 1);
+    addEdge(graph, 0, 2);
+    addEdge(graph, 0, 3);
+    addEdge(graph, 1, 4);
+    addEdge(graph, 2, 4);
+
 
     // displyGraph(graph);
 
     bft(graph,0);
+    bfs2(graph,0);
+    dfs(graph,0);
 
     return 0;
 }
