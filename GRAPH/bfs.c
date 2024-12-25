@@ -80,7 +80,7 @@ int dQueue()
         return temp;
     }
     int temp = queue[front];
-    front--;
+    front++;
     return temp;
 }
 
@@ -91,7 +91,7 @@ void enQueu(int data)
         printf("QUEUE IS FULL CNA NOT INSERT : \n");
         return;
     }
-    if(rare == front && rare == -1)
+    if(rare == -1)
     {
         rare++;
         front++;
@@ -99,43 +99,46 @@ void enQueu(int data)
     }else
     {
         rare++;
-        queue[rare];
+        queue[rare] = data;
     }
     
 }
 
 
+
 // here we wil do BFT
 void bft(struct Graph *graph,int startVertex)
 {
-    int arnwer[MAX],indx = 0;
+    int ansArray[MAX],visitedArray[MAX] = {0},indx = 0;
     enQueu(startVertex);
-    int visitedVertexes[MAX] = {0};
-    visitedVertexes[startVertex] = 1;
+    visitedArray[startVertex] = 1;
     while (front != -1)
     {
-        int currentVertex  = dQueue();
-        arnwer[indx] = currentVertex;
+        int elm = dQueue();
+        ansArray[indx] = elm;
         indx++;
-        struct vertext *temp = graph->array[currentVertex ].head;
-        while(temp != NULL)
+        struct vertext *temp = graph->array[elm].head;
+        while (temp != NULL)
         {
-            int adjVertex = temp->data;
-            if(visitedVertexes[adjVertex] == 0)
+            int data = temp->data;
+            if(visitedArray[data] == 0)
             {
-                enQueu(adjVertex);
-                visitedVertexes[adjVertex] = 1;
+                enQueu(data);
+                visitedArray[data] = 1;
             }
             temp = temp->next;
         }
+        
     }
 
-    // printf answer array which stores the BFS answer of the graph
-    printf("THE BSF OF THE GRAPH IS : %d ",indx);
-    for(int j = 0;j  < indx;j++)
+    // printing BFS array
+
+    printf("THE BFS OF THE GRAPH IS THIS : ");
+    for(int i = 0;i < indx;i++)
     {
-        printf("%d",arnwer[j]);
+        printf("%d  :  ",ansArray[i]);
     }
+    
 }
 
 int main()
@@ -146,10 +149,10 @@ int main()
     addEdge(graph,0,2);
     addEdge(graph,0,3);
     addEdge(graph,2,4);
-    addEdge(graph,2,2);
+    addEdge(graph,2,1);
     addEdge(graph,3,2);
 
-    displyGraph(graph);
+    // displyGraph(graph);
 
     bft(graph,0);
 
