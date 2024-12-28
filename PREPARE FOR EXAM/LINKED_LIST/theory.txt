@@ -1,0 +1,18 @@
+1.Implementing Other Data Structures
+Stacks and queues can be implemented using linked lists.
+Graphs: Adjacency lists in graph representations use linked lists.
+Sparse Matrices: Linked lists efficiently store sparse matrices.
+
+2.Dynamic Memory Allocation
+Linked lists allow dynamic memory allocation as their size is not fixed, unlike arrays.
+
+3.Music and Media Players
+Linked lists are used in playlists to manage songs. You can play the next or previous track using the next and previous references.
+
+4. Networking
+In networking, linked lists manage packets or connections dynamically.
+
+5. Operating Systems
+Process Scheduling: Doubly linked lists are used to manage processes in the operating system.
+
+6. Mostly use din those cases where insertion and deletion of elemnets sohuld be faster.

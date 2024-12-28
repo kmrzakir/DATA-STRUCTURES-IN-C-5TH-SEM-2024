@@ -1,0 +1,17 @@
+Printing Jobs: In a printer queue, print jobs are managed in a FIFO order.
+Real-Time Systems: Queues are used in systems requiring real-time processing, such as telecommunications.
+
+Breadth-First Search (BFS)
+In graph and tree traversal algorithms, BFS uses a queue to explore nodes level by level.
+
+Data Handling
+Buffers: Used in buffering data streams, such as video streaming, to handle data input/output.
+
+Operating Systems
+Process Scheduling: In operating systems, queues are used for managing processes in the CPU. For example, the ready queue holds all processes waiting to be executed by the CPU.
+
+Network Applications
+Packet Queuing: Data packets in routers are queued before being transmitted over the network.
+
+Task Scheduling
+Queues are used in task scheduling in software systems to execute tasks in sequence.

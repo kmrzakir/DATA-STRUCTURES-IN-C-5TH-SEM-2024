@@ -1,0 +1,14 @@
+1.Function Call Management: Programming languages use stacks to keep track of function calls and execution contexts (call stack).
+when function is called it is push in the stack.
+2. Expression Evaluation: Stacks are used to evaluate arithmetic expressions and parse syntax in compilers.
+3. Undo Mechanisms: Many applications implement undo features using stacks to track previous states.
+4. Depth-First Search (DFS): In graph and tree traversal algorithms, stacks help manage the nodes to visit.
+5. Browser History: Web browsers use stacks to manage the history of visited pages, allowing users to navigate back.
+6. Balancing Symbols: Stacks help in checking the correctness of symbols (like parentheses) in expressions.
+
+7. Memory Management
+Stack Memory: Temporary variables created by functions are stored in stack memory. When the function exits, the stack is cleared.
+
+8. Parsing
+Syntax Parsing: Compilers use stacks for parsing expressions, programming languages, and managing nested structures like parentheses or tags in HTML.
+9. used in Backtracking Algorithms

@@ -11,7 +11,7 @@ void createGraph()
     printf("ENTER THE NUMBER OF EDGES IN A GRAPH : ");
     scanf("%d",&edges);
 
-    printf("ENTER THE %d EDGES FROM SORCE TO DESTINATTION : ");
+    printf("ENTER THE %d EDGES FROM SORCE TO DESTINATTION : "edges);
     for(int i = 0; i<edges;i++)
     {
         int k,j;

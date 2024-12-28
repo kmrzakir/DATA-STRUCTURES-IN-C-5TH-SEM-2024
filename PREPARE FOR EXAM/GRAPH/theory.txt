@@ -1,0 +1,14 @@
+1. Social Networks
+Friendship Connections: Facebook, Twitter, and LinkedIn represent users as nodes and friendships or follows as edges.
+
+3. Web Applications
+Web Crawling: The internet is represented as a graph, with websites as nodes and hyperlinks as edges.
+
+ Geographic Applications
+Navigation Systems: Graphs are used in Google Maps, Waze, and other navigation systems to find the shortest path between locations.
+
+. Machine Learning
+Graph Neural Networks (GNNs): Graphs are used to model relationships in data for advanced machine learning tasks.
+
+8. Operating Systems
+Deadlock Detection: Resource allocation graphs help detect and resolve deadlocks.

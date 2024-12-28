@@ -1,0 +1,23 @@
+1. File Systems
+Directory Structures: Trees are used to represent the hierarchical organization of files and directories in operating systems.
+
+2. Databases
+Indexing: Trees like B-Trees and B+ Trees are used in databases to store and retrieve data efficiently.
+
+3. Search Algorithms
+Binary Search Trees (BSTs): Efficiently store sorted data for quick search, insertion, and deletion operations.
+
+Networking
+Routing Tables: Trees are used to manage routing tables in computer networks.
+
+6. Parsing and Compilation
+Abstract Syntax Trees (ASTs): Used by compilers to parse and represent the structure of source code.
+
+2. Social Media
+Trees can represent comment threads or reply chains on posts.
+
+10. Web Applications
+XML/HTML Parsing: Trees represent the DOM (Document Object Model) structure of web pages.
+
+5. Version Control Systems
+Represent changes and commits in projects using tree structures.
