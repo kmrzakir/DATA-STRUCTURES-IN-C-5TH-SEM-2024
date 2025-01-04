@@ -163,5 +163,5 @@ int main()
     insertNodeAtBiggning2(15);
     insertNodeAtEnd2(10000);
     
-    displyDll();
+    // displyDll();
 }
